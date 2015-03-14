@@ -1,7 +1,13 @@
 Set working directory and provide necessary packages?!
 ```{r }
-setwd("E:/Data/Coursera/Data Specialization/Reproducible_Research/PeerAssessment1")
-#library(
+#setwd("E:/Data/Coursera/Data Specialization/Reproducible_Research/PeerAssessment1")
+
+library(lattice)
+```
+
+```{r global_options, include=FALSE}
+knitr::opts_chunk$set(fig.width=12, fig.height=8, dev="png", fig.path="plots/",
+                      warning=FALSE, message=FALSE)
 ```
 
 
@@ -34,7 +40,9 @@ fStepsPerDay <- aggregate(steps ~ date, data=fOK, sum)
 
 2.If you do not understand the difference between a histogram and a barplot, research the difference between them. Make a histogram of the total number of steps taken each day
 ```{r }
+#png(filename="plots/hist1.png")
 hist(fStepsPerDay$steps, breaks = 20)
+#dev.off()
 ```
 
 3.Calculate and report the mean and median of the total number of steps taken per day
@@ -49,6 +57,8 @@ median(fStepsPerDay$steps)
 ```{r }
 fStepsPerInterval <- aggregate(steps ~ interval, data=fOK, mean)
 plot(fStepsPerInterval$interval, fStepsPerInterval$steps, type="l")
+#dev.copy(png,'plots/interval_avg_ts1.png')
+#dev.off()
 ```
 
 2.Which 5-minute interval, on average across all the days in the dataset, contains the maximum number of steps?
@@ -85,6 +95,8 @@ for (iRow in 1:nrow(fCorr)) {
 ```{r }
 fCorrStepsPerDay <- aggregate(steps ~ date, data=fCorr, sum)
 hist(fCorrStepsPerDay$steps, breaks = 20)
+#dev.copy(png,'plots/hist2.png')
+#dev.off()
 ```
 
 #Are there differences in activity patterns between weekdays and weekends?
@@ -108,4 +120,6 @@ xyplot(steps ~ interval| fStepsPerInterval $typeOfWeekday,
            xlab = "Interval",
            ylab = "Number of steps",
            layout=c(1,2))
+#dev.copy(png,'plots/interval_avg_ts2.png')
+#dev.off()
 ```

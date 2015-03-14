@@ -1,16 +1,12 @@
 Set working directory and provide necessary packages?!
 
 ```r
-setwd("E:/Data/Coursera/Data Specialization/Reproducible_Research/PeerAssessment1")
+#setwd("E:/Data/Coursera/Data Specialization/Reproducible_Research/PeerAssessment1")
+
+library(lattice)
 ```
 
-```
-## Error in setwd("E:/Data/Coursera/Data Specialization/Reproducible_Research/PeerAssessment1"): cannot change working directory
-```
 
-```r
-#library(
-```
 
 
 ##Loading and preprocessing the data
@@ -50,10 +46,15 @@ fStepsPerDay <- aggregate(steps ~ date, data=fOK, sum)
 2.If you do not understand the difference between a histogram and a barplot, research the difference between them. Make a histogram of the total number of steps taken each day
 
 ```r
+#png(filename="plots/hist1.png")
 hist(fStepsPerDay$steps, breaks = 20)
 ```
 
-![plot of chunk unnamed-chunk-5](figure/unnamed-chunk-5-1.png) 
+![plot of chunk unnamed-chunk-5](plots/unnamed-chunk-5-1.png) 
+
+```r
+#dev.off()
+```
 
 3.Calculate and report the mean and median of the total number of steps taken per day
 
@@ -82,7 +83,12 @@ fStepsPerInterval <- aggregate(steps ~ interval, data=fOK, mean)
 plot(fStepsPerInterval$interval, fStepsPerInterval$steps, type="l")
 ```
 
-![plot of chunk unnamed-chunk-7](figure/unnamed-chunk-7-1.png) 
+![plot of chunk unnamed-chunk-7](plots/unnamed-chunk-7-1.png) 
+
+```r
+#dev.copy(png,'plots/interval_avg_ts1.png')
+#dev.off()
+```
 
 2.Which 5-minute interval, on average across all the days in the dataset, contains the maximum number of steps?
 
@@ -132,7 +138,12 @@ fCorrStepsPerDay <- aggregate(steps ~ date, data=fCorr, sum)
 hist(fCorrStepsPerDay$steps, breaks = 20)
 ```
 
-![plot of chunk unnamed-chunk-11](figure/unnamed-chunk-11-1.png) 
+![plot of chunk unnamed-chunk-11](plots/unnamed-chunk-11-1.png) 
+
+```r
+#dev.copy(png,'plots/hist2.png')
+#dev.off()
+```
 
 #Are there differences in activity patterns between weekdays and weekends?
 
@@ -159,4 +170,9 @@ xyplot(steps ~ interval| fStepsPerInterval $typeOfWeekday,
            layout=c(1,2))
 ```
 
-![plot of chunk unnamed-chunk-13](figure/unnamed-chunk-13-1.png) 
+![plot of chunk unnamed-chunk-13](plots/unnamed-chunk-13-1.png) 
+
+```r
+#dev.copy(png,'plots/interval_avg_ts2.png')
+#dev.off()
+```
